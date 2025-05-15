@@ -16,16 +16,16 @@
     <header class="header">
         <img src="assets/image/logo.svg" alt="logotipo">
     </header>
-    <section class="hero" aria-describedby="hero-title">
+    <section class="hero" role="region" aria-describedby="hero-title">
         <div class="hero__content">
             <img class="hero__faces hero__faces--left" src="assets/image/faces-left.png" alt="faces">
             <img class="hero__faces hero__faces--right" src="assets/image/faces-right.png" alt="faces">
             <div class="hero__text">
-                <h1 class="hero__title">Group Chat for Everyone</h1>
+                <h1 id="hero-title" class="hero__title">Group Chat for Everyone</h1>
                 <p class="hero__description">
                     Meet makes it easy to connect with others face-to-face virtually and collaborate across any device.
                 </p>
-                <div class="hero__buttons">
+                <div class="hero__buttons" role="group" aria-label="main actions">
                     <button class="hero__button">Download <span class="hero__version">v1.3</span></button>
                     <button class="hero__button hero__button--secondary">What is it?</button>
                 </div>
