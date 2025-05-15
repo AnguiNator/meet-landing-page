@@ -1,0 +1,423 @@
+$color-cyan-600: #4D96A9;
+$color-cyan-300: #8FE3F9;
+$color-purple-600: #855FB1;
+$color-purple-300: #D9B8FF;
+$color-slate-900: #28283D;
+$color-slate-600: #87879D;
+$color-slate-300: #D1D1DF;
+$color-white: #FAFAFA;
+$color-cyan-hover: #71C0D4;
+$color-purple-hover: #B18BDD;
+$font-size-64: 6.4rem;
+$font-size-48: 4.8rem;
+$font-size-40: 4rem;
+$font-size-36: 3.6rem;
+$font-size-32: 3.2rem;
+$font-size-18: 1.8rem;
+$font-size-16: 1.6rem;
+$font-size-14: 1.4rem;
+$font-size-12: 1.2rem;
+
+
+$font-weight-medium: 500;
+$font-weight-black: 900;
+$line-height-110: 1.1;
+$line-height-150: 1.5;
+$letter-spacing-0: 0;
+$letter-spacing-4: 4px;
+$space-112: 112px;
+$space-80: 80px;
+$space-72: 72px;
+$space-64: 64px;
+$space-56: 56px;
+$space-40: 40px;
+$space-32: 32px;
+$space-24: 24px;
+$space-16: 16px;
+$space-8: 8px;
+$space-4: 4px;
+
+@mixin text-preset-1() {
+    font-weight: $font-weight-black;
+    font-size: $font-size-40;
+    line-height: $line-height-110;
+    letter-spacing: $letter-spacing-0;
+    color: $color-slate-900;
+}
+
+@mixin text-preset-2() {
+    font-weight: $font-weight-black;
+    font-size: $font-size-32;
+    line-height: $line-height-110;
+    letter-spacing: $letter-spacing-0;
+    color: $color-slate-900;
+}
+
+@mixin text-preset-3() {
+    font-weight: $font-weight-black;
+    font-size: $font-size-12;
+    line-height: $line-height-110;
+    letter-spacing: $letter-spacing-4;
+    color: $color-cyan-600;
+}
+
+@mixin text-preset-4() {
+    font-weight: $font-weight-medium;
+    font-size: $font-size-16;
+    line-height: $line-height-150;
+    letter-spacing: $letter-spacing-0;
+    color: $color-slate-600;
+}
+
+@mixin text-preset-5() {
+    font-weight: $font-weight-black;
+    font-size: $font-size-16;
+    line-height: $line-height-150;
+    letter-spacing: $letter-spacing-0;
+}
+
+
+@mixin button-base($bg-color, $hover-color) {
+    padding: $space-16 $space-40;
+    border-radius: 29px;
+    border-style: none;
+    color: $color-white;
+    @include text-preset-5();
+    background-color: $bg-color;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+@mixin flexbox($direction, $gap) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+@mixin grid($template-columns, $template-rows, $column-gap, $row-gap) {
+    display: grid;
+    grid-template-columns: $template-columns;
+    grid-template-rows: $template-rows;
+    grid-column-gap: $column-gap;
+    grid-row-gap: $row-gap;
+}
+
+@mixin tablet {
+    @media screen and (min-width: 48em) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: 64em) {
+        @content;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 62.5%;
+}
+
+
+.header {
+    display: grid;
+    justify-items: center;
+    padding: $space-80 $space-80 0 $space-80;
+}
+
+.hero {
+    width: 100%;
+    padding: $space-64 $space-32 $space-32;
+
+    @include tablet() {
+        padding: $space-64 $space-32;
+    }
+
+    @include desktop() {
+        padding: $space-64 $space-80;
+    }
+
+    &__content {
+        width: 100%;
+        @include grid(repeat(2, auto), 160px auto, 17px, 48px);
+        justify-items: center;
+
+
+        @include tablet() {
+            @include grid(repeat(2, auto), 303px auto, $space-32, $space-72);
+        }
+
+        @include desktop() {
+            @include grid(repeat(3, auto), 360px, $space-32, 0px);
+            align-items: center;
+        }
+    }
+
+    &__faces {
+        width: calc(100% + $space-32);
+        height: 100%;
+
+        @include desktop() {
+            width: calc(100% + $space-80);
+            height: 303px;
+        }
+    }
+
+    &__faces--left {
+        grid-area: 1 / 1 / 2 / 2;
+        margin-left: -32px;
+
+        @include desktop() {
+            margin-left: -80px;
+            align-self: start;
+        }
+    }
+
+    &__faces--right {
+        grid-area: 1 / 2 / 2 / 3;
+        margin-right: -32px;
+
+        @include desktop() {
+            grid-area: 1 / 3 / 2 / 4;
+            margin-right: -80px;
+            align-self: end;
+        }
+    }
+
+    &__text {
+        grid-area: 2 / 1 / 3 / 3;
+        width: 305px;
+        @include flexbox(column, $space-24);
+        text-align: center;
+
+        @include tablet() {
+            width: 448.3px;
+        }
+
+        @include desktop() {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+    }
+
+    &__title {
+        @include text-preset-1();
+
+        @include tablet() {
+            font-size: $font-size-48;
+        }
+
+        @include desktop() {
+            font-size: $font-size-64
+        }
+    }
+
+    &__description {
+        @include text-preset-4();
+
+        @include desktop() {
+            font-size: $font-size-18;
+        }
+    }
+
+    &__buttons {
+        @include flexbox(column, $space-16);
+        align-items: center;
+        justify-content: center;
+
+        @include tablet() {
+            @include flexbox(row, 17px);
+        }
+    }
+
+    &__button {
+        width: fit-content;
+        @include button-base($color-cyan-600, $color-cyan-hover);
+    }
+
+    &__version {
+        margin-left: $space-4;
+        color: $color-cyan-300;
+    }
+
+    &__button--secondary {
+        background-color: $color-purple-600;
+
+        &:hover {
+            background-color: $color-purple-hover;
+        }
+    }
+}
+
+.main {
+    width: 100%;
+    padding: $space-32 $space-32 $space-64 $space-32;
+
+    @include tablet() {
+        padding: $space-56 $space-32 $space-64;
+    }
+
+    @include desktop() {
+        padding: $space-56 $space-80 $space-72 ;
+    }
+
+    &__features {
+        @include flexbox(column, $space-64);
+        align-items: center;
+    }
+
+    &__collage {
+        @include grid(repeat(2, 147.5px), repeat(2, 144px), $space-16, $space-16);
+
+        @include tablet() {
+            @include grid(repeat(4, 1fr), 160px, $space-24, 0px);
+        }
+
+        @include desktop() {
+            @include grid(repeat(4, 256px), 256px, $space-32, 0px);
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    &__text {
+        max-width: 504px;
+
+        @include desktop() {
+            max-width: 544px;
+        }
+    }
+
+    &__text-content {
+        @include flexbox(column, $space-32);
+        text-align: center;
+        align-items: center;
+    }
+
+    &__text-header {
+        @include flexbox(column, $space-16);
+
+        @include tablet() {
+            max-width: 445px;
+        }
+    }
+
+    &__subtitle {
+        @include text-preset-3();
+
+        @include tablet() {
+            font-size: $font-size-14;
+        }
+
+        @include desktop() {
+            font-size: $font-size-16;
+        }
+    }
+
+    &__title {
+        @include text-preset-2();
+
+        @include tablet() {
+            font-size: $font-size-36;
+        }
+
+        @include desktop() {
+            font-size: $font-size-40;
+        }
+    }
+
+    &__description {
+        @include text-preset-4();
+
+        @include desktop() {
+            font-size: $font-size-18;
+        }
+    }
+}
+
+.footer {
+    align-items: center;
+    @include flexbox(column, 0);
+
+    &__indicator {
+        margin-bottom: -28px;
+        z-index: 1;
+    }
+
+    &__hero {
+        width: 100%;
+        background-image: url('../assets/image/imgFooter.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        padding: $space-64 $space-32;
+        display: flex;
+        justify-content: center;
+
+        @include desktop() {
+            padding: $space-112 $space-80;
+        }
+    }
+
+    &__content {
+        max-width: 504px;
+        @include flexbox(column, $space-24);
+        align-items: center;
+        text-align: center;
+
+        @include desktop() {
+            max-width: 1120px;
+            text-align: start;
+            @include grid(445px 355px 256px, 1fr, $space-32, 0px);
+        }
+    }
+
+    &__title {
+        @include text-preset-2();
+        color: $color-white;
+
+        @include tablet() {
+            font-size: $font-size-36;
+        }
+
+        @include desktop() {
+            font-size: $font-size-40;
+        }
+    }
+
+    &__description {
+        @include text-preset-4();
+        color: $color-white;
+
+        @include desktop() {
+            width: 355px;
+            font-size: $font-size-18;
+        }
+    }
+
+    &__button {
+        width: fit-content;
+        @include button-base($color-purple-600, $color-purple-hover);
+
+        @include desktop() {
+            place-self: start end;
+        }
+    }
+
+    &__version {
+        color: $color-purple-300;
+    }
+}
